@@ -28,7 +28,7 @@ def merge_sort(arr):
         i = j = k = 0
 
         while i < len(left_half) and j < len(right_half):
-            if left_half[i].lower < right_half[j].lower:
+            if left_half[i].lower() < right_half[j].lower():
                 arr[k] = left_half[i]
                 i += 1
             else:
@@ -56,7 +56,7 @@ def binary_search(arr, title):
 
         if mid_title.lower() == title.lower():
             return mid_title  
-        elif mid_title.lower < title.lower():
+        elif mid_title.lower() < title.lower():
             low = mid + 1
         else:
             high = mid - 1
@@ -70,7 +70,6 @@ merge_sort(video_titles)
 def search_title():
     title = request.args.get('title')
     print(title)
-    # return jsonify("Sucess!"), 200
     
     if not title:
         return jsonify({"error": "Title parameter is required"}), 400
@@ -78,7 +77,6 @@ def search_title():
     found_title = binary_search(video_titles, title)
 
     if found_title:
-        # print("Title found at index:", found_title)
         return jsonify("Success"), 200
     else:
         print("Video not found")
@@ -87,3 +85,5 @@ def search_title():
 if __name__ == '__main__':
     
     app.run(debug=True)
+
+
