@@ -72,7 +72,7 @@ def search_title():
     print(title)
     
     if not title:
-        return jsonify({"error": "Title parameter is required"}), 400
+        return jsonify("Title parameter is required"), 400
 
     found_title = binary_search(video_titles, title)
 
